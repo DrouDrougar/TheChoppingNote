@@ -1,58 +1,49 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using TheChoppingNote.Logic;
 using TheChoppingNote.Models;
 
 namespace TheChoppingNote.ViewModels
 {
-    public class RecipieListViewModel : BaseViewModel
+    public partial class RecipieListViewModel : BaseViewModel
     {
-        private ObservableCollection<RecipieListItemViewModel> recipies = new();
+        [ObservableProperty]
+        ObservableCollection<Recipie> recipiesListsSaved = new ObservableCollection<Recipie>();
 
-        public ObservableCollection<RecipieListItemViewModel> Recipies
+        [ObservableProperty]
+        string? addShoppingItem;
+
+        [ObservableProperty]
+        bool? removeShoppingItem;
+
+        [RelayCommand]
+        void Add()
         {
-            get { return recipies; }
-            set
-            {
-                recipies = value;
-                OnPropertyChanged();
-            }
+            recipiesListsSaved.Add(new Recipie() { Name = "New List" });
         }
 
-        private RecipieListItemViewModel selectedRecipieList;
-        public RecipieListItemViewModel SelectedRecipieList
+        [RelayCommand]
+        void Delete(Recipie shoppingItem)
         {
-            get { return selectedRecipieList; }
-            set
-            {
-                selectedRecipieList = value;
-                OnPropertyChanged();
-            }
+            recipiesListsSaved.Remove(shoppingItem);
         }
+        [RelayCommand]
+        async Task GoToDetails(Recipie recipie)
+        {
+            if (recipie is null) return;
 
-        public CommandDeligate AddCommand { get; }
-        public CommandDeligate RemoveCommand { get; }
-
-        public RecipieListViewModel()
-        {
-            AddCommand = new CommandDeligate(AddRecipieList);
-            RemoveCommand = new CommandDeligate(RemoveRecipieList, CanRemove);
+            await Shell.Current.GoToAsync($"{nameof(RecipieDetailsPage)}", true, new Dictionary<string, object> { { "Recipie", recipie } });
         }
-        private void AddRecipieList(object? parameter)
-        {
-            Recipie recipie = new Recipie() { Name = "" };
-            var recipiesVm = new RecipieListItemViewModel(recipie);
-            Recipies.Add(recipiesVm);
-            SelectedRecipieList = recipiesVm;
-        }
-        private bool? CanRemove(object? parameter) => SelectedRecipieList is not null;
-
-        public void RemoveRecipieList(object? parameter)
-        {
-            if (SelectedRecipieList is not null)
-            {
-                Recipies.Remove(SelectedRecipieList);
-            }
-            SelectedRecipieList = null;
-        }
+        //[RelayCommand]
+        //void Sort()
+        //{
+        //    var sort = recipiesListsSaved.OrderBy(c => c.Name).ToList();
+        //    recipiesListsSaved.Clear();
+        //    foreach (var item in sort)
+        //    {
+        //        recipiesListsSaved.Add(item);
+        //    }
+        //}
     }
 }

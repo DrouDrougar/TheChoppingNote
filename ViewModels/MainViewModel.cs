@@ -47,6 +47,12 @@ namespace TheChoppingNote.ViewModels
             }
         }
 
+        [RelayCommand]
+        async Task GoToRecipies()
+        {
+            await Shell.Current.GoToAsync($"{nameof(RecipiesPage)}", true);
+        }
+
 
     }
 }

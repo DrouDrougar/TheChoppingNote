@@ -15,8 +15,14 @@ namespace TheChoppingNote
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<RecipiesPage>();
+            builder.Services.AddSingleton<RecipieDetailsPage>();
+
             builder.Services.AddTransient<MainViewModel>();
+
+            builder.Services.AddTransient<RecipieListViewModel>();
+            builder.Services.AddTransient<RecipieDetailsViewModel>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
