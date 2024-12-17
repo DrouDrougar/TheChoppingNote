@@ -35,15 +35,5 @@ namespace TheChoppingNote.ViewModels
 
             await Shell.Current.GoToAsync($"{nameof(RecipieDetailsPage)}", true, new Dictionary<string, object> { { "Recipie", recipie } });
         }
-        //[RelayCommand]
-        //void Sort()
-        //{
-        //    var sort = recipiesListsSaved.OrderBy(c => c.Name).ToList();
-        //    recipiesListsSaved.Clear();
-        //    foreach (var item in sort)
-        //    {
-        //        recipiesListsSaved.Add(item);
-        //    }
-        //}
     }
 }

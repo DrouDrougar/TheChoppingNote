@@ -27,7 +27,7 @@ namespace TheChoppingNote.ViewModels
             File.WriteAllText(_saveFile, jsonSaveObject);
         }
 
-        public async void LoadSaveFile()
+        public async Task LoadSaveFile()
         {
             ObservableCollection<ShoppingItem> readSaveFile = new ObservableCollection<ShoppingItem>();
             if (File.Exists(_saveFile) == false) return;

@@ -6,11 +6,10 @@
              x:Class="TheChoppingNote.MainPage"
              x:DataType="Vm:MainViewModel"
              Title="{Binding Title}"
-             Shell.BackgroundColor="DarkGray">
+             Shell.BackgroundColor="DarkMagenta">
     
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0"
-                     EndPoint="1,1">
+        <RadialGradientBrush Center="0.5,0.5">
             <GradientStop Color="Purple"
                   Offset="0.0" />
             <GradientStop Color="DeepPink"
@@ -19,7 +18,7 @@
                   Offset="0.75" />
             <GradientStop Color="DarkMagenta"
                   Offset="1.0" />
-        </LinearGradientBrush>
+        </RadialGradientBrush>
     </ContentPage.Background>
     <ScrollView>
         <VerticalStackLayout

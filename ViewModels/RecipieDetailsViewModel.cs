@@ -31,7 +31,7 @@ namespace TheChoppingNote.ViewModels
 
         public void GetRecipieListItems()
         {
-
+            shoppingItemsInRecipie = recipieDetails.RecipieCollection;
         }
 
         [RelayCommand]
