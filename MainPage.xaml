@@ -22,7 +22,6 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
@@ -30,8 +29,6 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-            
-
             <Label
                 Text="Hello, Chopper!"
                 Style="{StaticResource Headline}"
@@ -59,7 +56,7 @@
                             <HorizontalStackLayout>
                                 <VerticalStackLayout>
                                     <HorizontalStackLayout Spacing="25">
-                                        <Label Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource SubHeadline}" Text="{Binding Name}"/>
                                         <CheckBox IsChecked="{Binding CheckedOf}"></CheckBox>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>

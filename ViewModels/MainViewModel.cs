@@ -25,7 +25,6 @@ namespace TheChoppingNote.ViewModels
         {
             var jsonSaveObject = JsonSerializer.Serialize(currentShoppingList);
             File.WriteAllText(_saveFile, jsonSaveObject);
-
         }
 
         public async void LoadSaveFile()
@@ -71,7 +70,6 @@ namespace TheChoppingNote.ViewModels
         [RelayCommand]
         void Sort()
         {
-
             var sort = CurrentShoppingList.OrderBy(c => c.CheckedOf).ToList();
             CurrentShoppingList.Clear();
             foreach (var item in sort)
@@ -87,9 +85,5 @@ namespace TheChoppingNote.ViewModels
             SaveToJson();
             await Shell.Current.GoToAsync($"{nameof(RecipiesPage)}", true);
         }
-
-
-
-
     }
 }

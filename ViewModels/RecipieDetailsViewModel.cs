@@ -16,7 +16,6 @@ namespace TheChoppingNote.ViewModels
         [ObservableProperty]
         ObservableCollection<ShoppingItem> shoppingItemsInRecipie = new ObservableCollection<ShoppingItem>();
 
-
         [ObservableProperty]
         string? addShoppingItem;        
         

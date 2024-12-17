@@ -21,7 +21,6 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-
         <VerticalStackLayout
            Padding="30,0"
            Spacing="25">
@@ -35,7 +34,6 @@
             <Button Text="Add An Item" Command="{Binding AddCommand}"/>
             <HorizontalStackLayout Padding="20,0" Spacing="25">
             </HorizontalStackLayout>
-
 
             <CollectionView ItemsSource="{Binding ShoppingItemsInRecipie}">
                 <CollectionView.ItemTemplate>
