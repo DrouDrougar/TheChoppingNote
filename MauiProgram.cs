@@ -19,10 +19,10 @@ namespace TheChoppingNote
             builder.Services.AddSingleton<RecipiesPage>();
             builder.Services.AddSingleton<RecipieDetailsPage>();
 
-            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddSingleton<MainViewModel>();
 
-            builder.Services.AddTransient<RecipieListViewModel>();
-            builder.Services.AddTransient<RecipieDetailsViewModel>();
+            builder.Services.AddSingleton<RecipieListViewModel>();
+            builder.Services.AddSingleton<RecipieDetailsViewModel>();
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

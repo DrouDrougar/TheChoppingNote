@@ -20,13 +20,10 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <ScrollView>
-
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-
             <Button Text="Create a new Recipie" Command="{Binding AddCommand}"/>
-
             <CollectionView ItemsSource="{Binding RecipiesListsSaved}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Recipie">
@@ -37,14 +34,20 @@
                                          Command="{Binding Source={RelativeSource AncestorType={x:Type Vm:RecipieListViewModel}}, Path=DeleteCommand}"     
                                          CommandParameter="{Binding .}" />
                             </SwipeView.RightItems>
-                            <HorizontalStackLayout>
-                                <VerticalStackLayout>
-                                    <HorizontalStackLayout Spacing="25">
-                                        <Label Text="{Binding Name}"/>
-                                        <Button Text="Details" Command="{Binding GoToDetailsCommand}" />
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </HorizontalStackLayout>
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type Vm:RecipieListViewModel}}, Path=GoToDetailsCommand}"     
+                                        CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <HorizontalStackLayout>
+                                    <VerticalStackLayout>
+                                        <HorizontalStackLayout Spacing="25">
+                                            <Label Text="{Binding Name}"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </Frame>
+
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

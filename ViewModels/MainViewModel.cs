@@ -1,7 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using TheChoppingNote.Models;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace TheChoppingNote.ViewModels
 {
@@ -15,6 +20,28 @@ namespace TheChoppingNote.ViewModels
         [ObservableProperty]
         bool? removeShoppingItem;
 
+        private string _saveFile = FileSystem.AppDataDirectory + "/TheChoppingBoard.Json";
+        public async void SaveToJson()
+        {
+            var jsonSaveObject = JsonSerializer.Serialize(currentShoppingList);
+            File.WriteAllText(_saveFile, jsonSaveObject);
+
+        }
+
+        public async void LoadSaveFile()
+        {
+            ObservableCollection<ShoppingItem> readSaveFile = new ObservableCollection<ShoppingItem>();
+            if (File.Exists(_saveFile) == false) return;
+            var rawData = File.ReadAllTextAsync(_saveFile).Result;
+
+            List<ShoppingItem> jObjects = JsonConvert.DeserializeObject<List<ShoppingItem>>(rawData);
+            foreach (var item in jObjects)
+            {
+                readSaveFile.Add(item);
+            }
+            currentShoppingList = readSaveFile;
+        }
+
         [RelayCommand]
         void Add()
         {
@@ -22,8 +49,13 @@ namespace TheChoppingNote.ViewModels
             {
                 currentShoppingList.Add(new ShoppingItem() { Name = addShoppingItem, CheckedOf = false });
             }
+            SaveToJson();
         }
-
+        [RelayCommand]
+        void GetAll()
+        {
+            LoadSaveFile();
+        }
         [RelayCommand]
         void Delete(ShoppingItem shoppingItem)
         {
@@ -32,7 +64,8 @@ namespace TheChoppingNote.ViewModels
         [RelayCommand]
         void Clear()
         {
-            CurrentShoppingList.Clear() ;
+            CurrentShoppingList.Clear();
+            SaveToJson();
         }
 
         [RelayCommand]
@@ -45,13 +78,17 @@ namespace TheChoppingNote.ViewModels
             {
                 CurrentShoppingList.Add(item);
             }
+            SaveToJson();
         }
 
         [RelayCommand]
         async Task GoToRecipies()
         {
+            SaveToJson();
             await Shell.Current.GoToAsync($"{nameof(RecipiesPage)}", true);
         }
+
+
 
 
     }

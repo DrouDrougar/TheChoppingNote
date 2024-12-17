@@ -4,14 +4,16 @@ using CommunityToolkit.Mvvm.Input;
 using TheChoppingNote.Models;
 
 
-namespace TheChoppingNote;
-
-public partial class RecipiesPage : ContentPage
+namespace TheChoppingNote
 {
-	public RecipiesPage(RecipieListViewModel vm)
-	{
-		InitializeComponent();
-        BindingContext = vm;
-        vm.Title = "Recipies";
+
+    public partial class RecipiesPage : ContentPage
+    {
+        public RecipiesPage(RecipieListViewModel vm)
+        {
+            InitializeComponent();
+            BindingContext = vm;
+            vm.Title = "Recipie";
+        }
     }
 }

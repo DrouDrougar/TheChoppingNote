@@ -20,7 +20,7 @@ namespace TheChoppingNote.ViewModels
         [RelayCommand]
         void Add()
         {
-            recipiesListsSaved.Add(new Recipie() { Name = "New List" });
+            recipiesListsSaved.Add(new Recipie() { Name = "New List", Description="A Recipie"});
         }
 
         [RelayCommand]

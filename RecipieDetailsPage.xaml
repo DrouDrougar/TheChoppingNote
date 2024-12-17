@@ -5,11 +5,62 @@
              xmlns:Vm="clr-namespace:TheChoppingNote.ViewModels"
              x:DataType="Vm:RecipieDetailsViewModel"
              x:Class="TheChoppingNote.RecipieDetailsPage"
-             Title="RecipieDetails">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="{Binding Title}">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                    EndPoint="1,1">
+            <GradientStop Color="Purple"
+                 Offset="0.0" />
+            <GradientStop Color="DeepPink"
+                 Offset="0.25" />
+            <GradientStop Color="MediumPurple"
+                 Offset="0.75" />
+            <GradientStop Color="DarkMagenta"
+                 Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+
+        <VerticalStackLayout
+           Padding="30,0"
+           Spacing="25">
+            <VerticalStackLayout>
+                <Entry Placeholder="{Binding RecipieDetails.Name}" Text="{Binding EditCommand}"/>
+                <Entry Placeholder="{Binding RecipieDetails.Description}" Text="{Binding EditCommand}"/>
+            </VerticalStackLayout>
+            <Button Text="Save Edit" Command="{Binding EditCommand}"/>
+
+            <Entry Placeholder="Add a Item To your Shopping List" Text="{Binding AddCommand}"/>
+            <Button Text="Add An Item" Command="{Binding AddCommand}"/>
+            <HorizontalStackLayout Padding="20,0" Spacing="25">
+            </HorizontalStackLayout>
+
+
+            <CollectionView ItemsSource="{Binding ShoppingItemsInRecipie}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShoppingItem">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItem Text="Delete"
+                                        BackgroundColor="Red"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type Vm:RecipieDetailsViewModel}}, Path=DeleteCommand}"     
+                                        CommandParameter="{Binding .}" 
+                                          />
+                            </SwipeView.RightItems>
+                            <HorizontalStackLayout>
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="25">
+                                        <Label Text="{Binding Name}"/>
+                                        <Label Text="{Binding Description}"/>
+                                        <Label Text="{Binding Price}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
