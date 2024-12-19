@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
 using TheChoppingNote.Logic;
 using TheChoppingNote.Models;
 
@@ -17,8 +18,10 @@ namespace TheChoppingNote.ViewModels
         ObservableCollection<ShoppingItem> shoppingItemsInRecipie = new ObservableCollection<ShoppingItem>();
 
         [ObservableProperty]
-        string? addShoppingItem;        
-        
+        string? addShoppingItem;
+        [ObservableProperty]
+        string? addDescriptionItem;
+
         [ObservableProperty]
         string? editDescription;
 
@@ -35,11 +38,11 @@ namespace TheChoppingNote.ViewModels
         }
 
         [RelayCommand]
-        void Add()
+        void AddItem()
         {
-            if (addShoppingItem is not null && addShoppingItem != "")
+            if (addShoppingItem is not null && addShoppingItem != "" && addDescriptionItem is not null)
             {
-                shoppingItemsInRecipie.Add(new ShoppingItem() { Name = addShoppingItem, CheckedOf = false });
+                shoppingItemsInRecipie.Add(new ShoppingItem() { Name = addShoppingItem, Description=addDescriptionItem});
             }
         }
 

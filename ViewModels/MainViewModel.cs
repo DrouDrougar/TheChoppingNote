@@ -21,7 +21,7 @@ namespace TheChoppingNote.ViewModels
         bool? removeShoppingItem;
 
         private string _saveFile = FileSystem.AppDataDirectory + "/TheChoppingBoard.Json";
-        public async void SaveToJson()
+        public async Task SaveToJson()
         {
             var jsonSaveObject = JsonSerializer.Serialize(currentShoppingList);
             File.WriteAllText(_saveFile, jsonSaveObject);

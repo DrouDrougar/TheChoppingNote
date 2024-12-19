@@ -6,7 +6,6 @@ using TheChoppingNote.Models;
 
 namespace TheChoppingNote
 {
-
     public partial class RecipiesPage : ContentPage
     {
         public RecipiesPage(RecipieListViewModel vm)

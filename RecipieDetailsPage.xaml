@@ -30,8 +30,9 @@
             </VerticalStackLayout>
             <Button Text="Save Edit" Command="{Binding EditCommand}"/>
 
-            <Entry Placeholder="Add a Item To your Shopping List" Text="{Binding AddCommand}"/>
-            <Button Text="Add An Item" Command="{Binding AddCommand}"/>
+            <Entry Placeholder="Add a Item" Text="{Binding AddShoppingItem}"/>
+            <Entry Placeholder="Add things like ammounts here" Text="{Binding AddDescriptionItem}"/>
+            <Button Text="Add An Item" Command="{Binding AddItemCommand}"/>
             <HorizontalStackLayout Padding="20,0" Spacing="25">
             </HorizontalStackLayout>
 

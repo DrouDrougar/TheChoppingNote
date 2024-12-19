@@ -50,11 +50,11 @@
                                          BackgroundColor="Red"
                                          Command="{Binding Source={RelativeSource AncestorType={x:Type Vm:MainViewModel}}, Path=DeleteCommand}"     
                                          CommandParameter="{Binding .}" 
-                                           />
+                                         />
                             </SwipeView.RightItems>
                             <HorizontalStackLayout>
                                 <VerticalStackLayout>
-                                    <HorizontalStackLayout Spacing="25">
+                                    <HorizontalStackLayout Spacing="25"  >
                                         <Label Style="{StaticResource SubHeadline}" Text="{Binding Name}"/>
                                         <CheckBox IsChecked="{Binding CheckedOf}"></CheckBox>
                                     </HorizontalStackLayout>

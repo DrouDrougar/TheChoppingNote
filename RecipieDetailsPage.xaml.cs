@@ -4,7 +4,7 @@ namespace TheChoppingNote;
 
 public partial class RecipieDetailsPage : ContentPage
 {
-	public RecipieDetailsPage( RecipieDetailsViewModel detailsVm)
+	public RecipieDetailsPage(RecipieDetailsViewModel detailsVm)
 	{
 		InitializeComponent();
         BindingContext = detailsVm;
